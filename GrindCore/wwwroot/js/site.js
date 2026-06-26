@@ -63,13 +63,31 @@
     function populateRoutineSelect(state) {
         const select = document.querySelector('[data-routine-select]');
         if (!select) return;
+        const prevValue = select.value;
         select.innerHTML = '';
+
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Selecciona una rutina...';
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        select.appendChild(placeholder);
+
         state.routines.forEach(r => {
             const opt = document.createElement('option');
             opt.value = r.id;
             opt.textContent = r.name;
             select.appendChild(opt);
         });
+
+        // restore previous selection if still present
+        if (prevValue) {
+            const match = Array.from(select.options).find(o => o.value === prevValue);
+            if (match) select.value = prevValue;
+        } else if (state.routines.length === 1) {
+            // if only one routine, select it by default
+            select.value = state.routines[0].id;
+        }
     }
 
     function renderRoutineList(state, filter = 'all') {
