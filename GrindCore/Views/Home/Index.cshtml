@@ -1,8 +1,104 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model WorkoutDashboardViewModel
+@using System.Text.Json
+
+@{
+    ViewData["Title"] = "Entrenamientos";
+    var initialState = JsonSerializer.Serialize(Model, new JsonSerializerOptions(JsonSerializerDefaults.Web));
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="app-shell" data-workout-app data-initial-state='@initialState'>
+    <div class="app-heading">
+        <div>
+            <p class="eyebrow">Powerlifting log</p>
+            <h1>Planifica rutinas, ejercicios y series</h1>
+        </div>
+        <div class="metric-strip" aria-label="Resumen del entrenamiento">
+            <div>
+                <span data-total-routines>0</span>
+                <small>rutinas</small>
+            </div>
+            <div>
+                <span data-total-sets>0</span>
+                <small>series</small>
+            </div>
+            <div>
+                <span data-total-volume>0 kg</span>
+                <small>volumen</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="planner-grid">
+        <aside class="control-panel" aria-label="Crear rutina">
+            <form class="routine-form" data-routine-form>
+                <h2>Nueva rutina</h2>
+                <label>
+                    Nombre
+                    <input class="form-control" name="routineName" type="text" placeholder="Ej. Intensidad banca" required maxlength="60">
+                </label>
+                <label>
+                    Enfoque
+                    <select class="form-select" name="routineFocus">
+                        <option>Fuerza</option>
+                        <option>Volumen</option>
+                        <option>Tecnica</option>
+                        <option>Accesorios</option>
+                    </select>
+                </label>
+                <button class="btn btn-dark w-100" type="submit">Agregar rutina</button>
+            </form>
+
+            <form class="exercise-form" data-exercise-form>
+                <h2>Agregar ejercicio</h2>
+                <label>
+                    Rutina
+                    <select class="form-select" name="routineId" data-routine-select required></select>
+                </label>
+                <label>
+                    Ejercicio
+                    <input class="form-control" name="exerciseName" type="text" list="exercise-suggestions" placeholder="Ej. Sentadilla" required maxlength="60">
+                </label>
+                <div class="input-row">
+                    <label>
+                        Series
+                        <input class="form-control" name="sets" type="number" min="1" max="12" value="3" required>
+                    </label>
+                    <label>
+                        Reps
+                        <input class="form-control" name="reps" type="number" min="1" max="20" value="5" required>
+                    </label>
+                    <label>
+                        Kg
+                        <input class="form-control" name="loadKg" type="number" min="0" max="600" step="0.5" value="60" required>
+                    </label>
+                </div>
+                <button class="btn btn-outline-dark w-100" type="submit">Agregar ejercicio</button>
+            </form>
+
+            <datalist id="exercise-suggestions">
+                @foreach (var suggestion in Model.ExerciseSuggestions)
+                {
+                    <option value="@suggestion"></option>
+                }
+            </datalist>
+        </aside>
+
+        <div>
+            <div class="toolbar">
+                <div class="segmented-control" aria-label="Filtro de rutinas">
+                    <button class="is-active" type="button" data-filter="all">Todas</button>
+                    <button type="button" data-filter="Fuerza">Fuerza</button>
+                    <button type="button" data-filter="Volumen">Volumen</button>
+                    <button type="button" data-filter="Tecnica">Tecnica</button>
+                </div>
+                <button class="btn btn-sm btn-link text-danger" type="button" data-reset-app>Reiniciar</button>
+            </div>
+
+            <div class="routine-list" data-routine-list></div>
+            <div class="empty-state" data-empty-state hidden>
+                <h2>No hay rutinas todavía</h2>
+                <p>Crea una rutina y agrega los movimientos principales para empezar el bloque.</p>
+            </div>
+        </div>
+    </div>
+</section>
