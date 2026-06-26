@@ -30,7 +30,8 @@
 
     <div class="planner-grid">
         <aside class="control-panel" aria-label="Crear rutina">
-            <form class="routine-form" data-routine-form>
+            <form asp-action="AddRoutine" method="post" class="routine-form" data-routine-form>
+                @Html.AntiForgeryToken()
                 <h2>Nueva rutina</h2>
                 <label>
                     Nombre
