@@ -18,3 +18,15 @@ Desarrollo de la primera versión de Grind Core, una aplicación web dedicada a 
 
 Implementar el patrón arquitectónico Modelo-Vista-Controlador (MVC) estructurado mediante las herramientas nativas de ASP.NET Core.
 
+### ¿Por qué?
+
+ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto resuelve el enrutamiento, la gestión de peticiones y el renderizado de la interfaz en un único proyecto unificado, eliminando la necesidad de configurar middlewares complejos, comunicación entre servicios o infraestructura adicional en las fases iniciales.
+
+### Alternativas consideradas
+
+| Alternativa | Por qué la descarté |
+|-------------|---------------------|
+| Arquitectura Hexagonal | Requiere una definición exhaustiva de puertos y adaptadores que eleva la complejidad innecesariamente para el alcance actual del repositorio. |
+| Clean Architecture | La separación estricta en múltiples capas y proyectos independientes genera un exceso de abstracción difícil de justificar en este punto del desarrollo. |
+| Minimal APIs + Frontend Independiente | Implica gestionar la configuración de CORS y mantener entornos de ejecución separados, lo que ralentiza el flujo de trabajo inicial. |
+
