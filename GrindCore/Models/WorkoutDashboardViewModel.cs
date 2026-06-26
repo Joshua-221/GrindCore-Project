@@ -4,6 +4,8 @@ public sealed class WorkoutDashboardViewModel
 {
     public IReadOnlyList<RoutineSeed> SuggestedRoutines { get; init; } = [];
 
+    public IReadOnlyList<RoutineSeed> UserRoutines { get; init; } = [];
+
     public IReadOnlyList<string> ExerciseSuggestions { get; init; } = [];
 }
 
