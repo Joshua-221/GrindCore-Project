@@ -29,26 +29,7 @@
     </div>
 
     <div class="planner-grid">
-        <aside class="control-panel" aria-label="Crear rutina">
-            <form asp-action="AddRoutine" method="post" class="routine-form" data-routine-form>
-                @Html.AntiForgeryToken()
-                <h2>Nueva rutina</h2>
-                <label>
-                    Nombre
-                    <input class="form-control" name="routineName" type="text" placeholder="Ej. Intensidad banca" required maxlength="60">
-                </label>
-                <label>
-                    Enfoque
-                    <select class="form-select" name="routineFocus">
-                        <option>Fuerza</option>
-                        <option>Volumen</option>
-                        <option>Tecnica</option>
-                        <option>Accesorios</option>
-                    </select>
-                </label>
-                <button class="btn btn-dark w-100" type="submit">Agregar rutina</button>
-            </form>
-
+        <aside class="control-panel" aria-label="Agregar ejercicio">
             <form class="exercise-form" data-exercise-form>
                 <h2>Agregar ejercicio</h2>
                 <label>
