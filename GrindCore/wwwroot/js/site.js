@@ -66,13 +66,17 @@
         const prevValue = select.value;
         select.innerHTML = '';
 
-        const placeholder = document.createElement('option');
-        placeholder.value = '';
-        placeholder.textContent = 'Selecciona una rutina...';
-        placeholder.disabled = true;
-        placeholder.selected = true;
-        select.appendChild(placeholder);
+        if (!state.routines || state.routines.length === 0) {
+            const placeholder = document.createElement('option');
+            placeholder.value = '';
+            placeholder.textContent = 'No hay rutinas — crea una';
+            placeholder.disabled = true;
+            placeholder.selected = true;
+            select.appendChild(placeholder);
+            return;
+        }
 
+        // populate options
         state.routines.forEach(r => {
             const opt = document.createElement('option');
             opt.value = r.id;
@@ -80,12 +84,11 @@
             select.appendChild(opt);
         });
 
-        // restore previous selection if still present
-        if (prevValue) {
-            const match = Array.from(select.options).find(o => o.value === prevValue);
-            if (match) select.value = prevValue;
-        } else if (state.routines.length === 1) {
-            // if only one routine, select it by default
+        // restore previous selection if still present, otherwise default to first routine
+        const match = prevValue ? Array.from(select.options).find(o => o.value === prevValue) : null;
+        if (match) {
+            select.value = prevValue;
+        } else {
             select.value = state.routines[0].id;
         }
     }
