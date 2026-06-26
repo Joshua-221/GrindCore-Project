@@ -30,3 +30,26 @@ ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto 
 | Clean Architecture | La separación estricta en múltiples capas y proyectos independientes genera un exceso de abstracción difícil de justificar en este punto del desarrollo. |
 | Minimal APIs + Frontend Independiente | Implica gestionar la configuración de CORS y mantener entornos de ejecución separados, lo que ralentiza el flujo de trabajo inicial. |
 
+---
+
+## Consecuencias
+
+**Lo que gano:**
+
+- Consecuencia técnica: Organización inmediata de los componentes web y acceso a datos guiado por las convenciones estándar del framework, simplificando el mantenimiento del código inicial.
+- Consecuencia sobre el proceso o el equipo: Flujo de trabajo directo y centralizado en un solo proyecto, optimizando el tiempo al evitar configuraciones de infraestructura ajenas al dominio.
+
+**Lo que sacrifico o asumo:**
+
+- Limitación técnica: Fuerte acoplamiento entre la lógica de presentación y las reglas de negocio, lo que impide realizar pruebas unitarias completamente aisladas del contexto HTTP.
+- Deuda o riesgo: La lógica del cálculo de los levantamientos quedará ligada a los controladores, asumiendo el compromiso de realizar una refactorización profunda para extraer el dominio en la siguiente rama.
+
+## Diagrama
+
+```mermaid
+graph TD
+    Client((Usuario / Navegador)) -->|HTTP Request| C[Controladores]
+    C -->|Instancia / Modifica| M[Modelos / Lógica de Entrenamiento]
+    C -->|Pasa datos| V[Vistas / Razor Pages]
+    V -->|HTML / UI| Client
+    M <--> DB[(PostgreSQL / SQLite)]
