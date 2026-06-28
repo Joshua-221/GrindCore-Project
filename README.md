@@ -44,3 +44,8 @@ Se ha implementado el Patrón Strategy para encapsular las fórmulas de cálculo
 
 - **Limitación técnica:** Se introduce una ligera complejidad inicial al tener que gestionar más archivos (interfaces y clases concretas).
 - **Deuda o riesgo:** Es necesario mantener la consistencia en el registro de los servicios en `Program.cs`. Si el proyecto crece demasiado, la `Factory` podría necesitar una refactorización hacia un registro por reflexión o mediante contenedores de inyección más avanzados.
+
+## Declaración de IA
+
+Para la elaboración de este ADR se utilizó Gemini (Google) como herramienta de asistencia en la redacción y estructuración del documento. Todas las decisiones de diseño, el análisis de alternativas y la justificación técnica aplicada al contexto de GrindCore son propias del autor. La IA fue utilizada exclusivamente como apoyo para expresar y documentar de forma clara las decisiones previamente razonadas.
+
