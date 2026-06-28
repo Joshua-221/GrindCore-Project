@@ -1,4 +1,4 @@
-# ADR-01: Migración a Arquitectura Hexagonal
+# ADR-02: Migración a Arquitectura Hexagonal
 
 | Campo  | Valor |
 |--------|-------|
