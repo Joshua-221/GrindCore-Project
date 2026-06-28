@@ -1,5 +1,6 @@
 using GrindCore.Application.Services;
 using GrindCore.Domain.Interfaces;
+using GrindCore.Domain.Services;
 using GrindCore.Infrastructure.Repositories;
 using GrindCore.Infrastructure.Services;
 using GrindCore.Web.Filters;
@@ -19,6 +20,8 @@ builder.Services.AddSession(options =>
 
 builder.Services.AddScoped<IAthleteRepository, InMemoryAthleteRepository>();
 builder.Services.AddScoped<IAthleteService, AthleteService>();
+builder.Services.AddScoped<ICalculationStrategy, EpleyRpeStrategy>();
+builder.Services.AddScoped<ICalculatorFactory, CalculatorFactory>();
 builder.Services.AddScoped<IAuthService, MockAuthService>();
 builder.Services.AddScoped<ApiAuthFilter>();
 

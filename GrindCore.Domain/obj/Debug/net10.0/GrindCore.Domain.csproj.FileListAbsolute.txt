@@ -1,0 +1,12 @@
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/bin/Debug/net10.0/GrindCore.Domain.deps.json
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/bin/Debug/net10.0/GrindCore.Domain.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/bin/Debug/net10.0/GrindCore.Domain.pdb
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.AssemblyInfoInputs.cache
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.AssemblyInfo.cs
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.csproj.CoreCompileInputs.cache
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.sourcelink.json
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/refint/GrindCore.Domain.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/GrindCore.Domain.pdb
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Domain/obj/Debug/net10.0/ref/GrindCore.Domain.dll
