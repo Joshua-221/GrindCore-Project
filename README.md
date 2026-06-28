@@ -44,6 +44,10 @@ ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto 
 - Limitación técnica: Fuerte acoplamiento entre la lógica de presentación y las reglas de negocio, lo que impide realizar pruebas unitarias completamente aisladas del contexto HTTP.
 - Deuda o riesgo: La lógica del cálculo de los levantamientos quedará ligada a los controladores, asumiendo el compromiso de realizar una refactorización profunda para extraer el dominio en la siguiente rama.
 
+## Declaración de IA 
+
+- Para la elaboración de este ADR se utilizó Gemini (Google) como herramienta de asistencia en la redacción y estructuración del documento. Todas las decisiones de diseño, el análisis de alternativas y la justificación técnica aplicada al contexto de GrindCore son propias del autor. La IA fue utilizada exclusivamente como apoyo para expresar y documentar de forma clara las decisiones previamente razonadas.
+
 ## Diagrama
 
 ```mermaid
@@ -52,4 +56,8 @@ graph TD
     C -->|Instancia / Modifica| M[Modelos / Lógica de Entrenamiento]
     C -->|Pasa datos| V[Vistas / Razor Pages]
     V -->|HTML / UI| Client
-    M <--> DB[(PostgreSQL / SQLite)]
+    M <--> DB[(PostgreSQL / SQLite)] 
+
+
+
+
