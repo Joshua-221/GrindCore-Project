@@ -44,6 +44,10 @@ Esta arquitectura garantiza que las reglas de negocio, como la fórmula de Epley
 - **Limitación técnica**: Mayor esfuerzo inicial en la configuración de proyectos y referencias en Rider.
 - **Deuda o riesgo**: Necesidad de ser estrictos con la visibilidad de los namespaces para no romper las capas.
 
+## Declaración de IA
+
+Para la elaboración de este ADR se utilizó Gemini (Google) como herramienta de asistencia en la redacción y estructuración del documento. Todas las decisiones de diseño, el análisis de alternativas y la justificación técnica aplicada al contexto de GrindCore son propias del autor. La IA fue utilizada exclusivamente como apoyo para expresar y documentar de forma clara las decisiones previamente razonadas.
+
 ## Diagrama
 
 ```mermaid
