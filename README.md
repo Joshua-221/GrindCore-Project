@@ -46,3 +46,7 @@ El endpoint principal para obtener estimaciones es: `GET /api/calculator/1rm`
 
 ## Autor
 * **Joshua Isaí Cruz Mosqueda**
+
+## Declaración de IA
+
+Para la elaboración de este ADR se utilizó Gemini (Google) como herramienta de asistencia en la redacción y estructuración del documento. Todas las decisiones de diseño, el análisis de alternativas y la justificación técnica aplicada al contexto de GrindCore son propias del autor. La IA fue utilizada exclusivamente como apoyo para expresar y documentar de forma clara las decisiones previamente razonadas.
