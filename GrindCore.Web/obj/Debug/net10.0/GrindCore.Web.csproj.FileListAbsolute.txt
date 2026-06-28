@@ -104,3 +104,8 @@
 /Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/obj/Debug/net10.0/GrindCore.Web.pdb
 /Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/obj/Debug/net10.0/GrindCore.Web.genruntimeconfig.cache
 /Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/obj/Debug/net10.0/ref/GrindCore.Web.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/bin/Debug/net10.0/Microsoft.OpenApi.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/bin/Debug/net10.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/bin/Debug/net10.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/joshuacruz/RiderProjects/GrindCore/GrindCore.Web/obj/Debug/net10.0/GrindCore.Web.MvcApplicationPartsAssemblyInfo.cs
