@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrindCore.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+905f0fbf4aa302d1d567bdcbdaa30b4c8105c076")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9b57a5620f24094d3757835f4246109ae289b57")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrindCore.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrindCore.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
