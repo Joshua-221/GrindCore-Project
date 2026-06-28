@@ -1,55 +1,48 @@
-# ADR-01: Adopción de Arquitectura MVC Inicial
+# ADR-03: Grind Core API
 
-| Campo  | Valor |
-|--------|-------|
-| Autor  | Joshua Isaí Cruz Mosqueda |
-| Fecha  | 26/06/2026 |
-| Estado | `Aceptado` |
+| Campo | Valor |
+|-------|-------|
+| Proyecto | Grind Core |
+| Versión | 1.0.0 |
+| Estatus | En desarrollo |
 
 ---
 
 ## Contexto
 
-Desarrollo de la primera versión de Grind Core, una aplicación web dedicada a la gestión de entrenamientos de powerlifting. Se requiere una estructura inicial en .NET que permita construir una base funcional y estable, sirviendo como punto de partida estructurado antes de realizar la transición hacia patrones arquitectónicos más desacoplados.
+**Grind Core** es una plataforma de gestión para powerlifting diseñada para atletas y entrenadores que buscan precisión en su programación[cite: 1]. El sistema resuelve la necesidad de estimar la fuerza máxima (1RM) con base en cargas submáximas, considerando factores de fatiga reales del atleta para evitar proyecciones erróneas propias de fórmulas estándar[cite: 1].
 
 ---
 
-## Decisión
+## Características Principales
 
-Implementar el patrón arquitectónico Modelo-Vista-Controlador (MVC) estructurado mediante las herramientas nativas de ASP.NET Core.
+### Calculadora de 1RM con RPE
+El motor principal de la API es un servicio de dominio que combina la fórmula de Epley con una tabla de factores de ajuste según el RPE (Rate of Perceived Exertion)[cite: 1].
 
-### ¿Por qué?
-
-ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto resuelve el enrutamiento, la gestión de peticiones y el renderizado de la interfaz en un único proyecto unificado, eliminando la necesidad de configurar middlewares complejos, comunicación entre servicios o infraestructura adicional en las fases iniciales.
-
-### Alternativas consideradas
-
-| Alternativa | Por qué la descarté |
-|-------------|---------------------|
-| Arquitectura Hexagonal | Requiere una definición exhaustiva de puertos y adaptadores que eleva la complejidad innecesariamente para el alcance actual del repositorio. |
-| Clean Architecture | La separación estricta en múltiples capas y proyectos independientes genera un exceso de abstracción difícil de justificar en este punto del desarrollo. |
-| Minimal APIs + Frontend Independiente | Implica gestionar la configuración de CORS y mantener entornos de ejecución separados, lo que ralentiza el flujo de trabajo inicial. |
+### Arquitectura Hexagonal
+El proyecto está estructurado para separar la lógica de negocio (`Domain`) de la infraestructura y la capa de presentación (`Web`), asegurando mantenibilidad y facilidad para realizar pruebas unitarias[cite: 1].
 
 ---
 
-## Consecuencias
+## Especificaciones de la API
 
-**Lo que gano:**
+El endpoint principal para obtener estimaciones es: `GET /api/calculator/1rm`
 
-- Consecuencia técnica: Organización inmediata de los componentes web y acceso a datos guiado por las convenciones estándar del framework, simplificando el mantenimiento del código inicial.
-- Consecuencia sobre el proceso o el equipo: Flujo de trabajo directo y centralizado en un solo proyecto, optimizando el tiempo al evitar configuraciones de infraestructura ajenas al dominio.
+| Parámetro | Tipo | Requerido | Descripción |
+|-----------|------|-----------|-------------|
+| `weight`  | double | Sí | Peso levantado en kg[cite: 1] |
+| `reps`    | int    | Sí | Repeticiones realizadas[cite: 1] |
+| `rpe`     | int    | Sí | Esfuerzo percibido (1-10)[cite: 1] |
 
-**Lo que sacrifico o asumo:**
+---
 
-- Limitación técnica: Fuerte acoplamiento entre la lógica de presentación y las reglas de negocio, lo que impide realizar pruebas unitarias completamente aisladas del contexto HTTP.
-- Deuda o riesgo: La lógica del cálculo de los levantamientos quedará ligada a los controladores, asumiendo el compromiso de realizar una refactorización profunda para extraer el dominio en la siguiente rama.
+## Guía de Instalación y Uso
 
-## Diagrama
+1. **Requisitos:** .NET 10 y un entorno configurado para ejecutar servicios web[cite: 1].
+2. **Ejecución:** Utiliza tu IDE preferido (se recomienda el uso de herramientas JetBrains como Rider) para compilar y ejecutar el proyecto en modo `Development`[cite: 1].
+3. **Pruebas:** Accede a la interfaz de Swagger local (`/swagger/index.html`) para interactuar con los endpoints y verificar las respuestas en formato JSON[cite: 1].
 
-```mermaid
-graph TD
-    Client((Usuario / Navegador)) -->|HTTP Request| C[Controladores]
-    C -->|Instancia / Modifica| M[Modelos / Lógica de Entrenamiento]
-    C -->|Pasa datos| V[Vistas / Razor Pages]
-    V -->|HTML / UI| Client
-    M <--> DB[(PostgreSQL / SQLite)]
+---
+
+## Autor
+* **Joshua Isaí Cruz Mosqueda**
