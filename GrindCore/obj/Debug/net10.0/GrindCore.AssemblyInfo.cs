@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GrindCore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b28d876a820c094cbdf6b37c1779d6bd8b0affde")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa796476ecc34146d90f4f03009d32ae6f48e3b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("GrindCore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GrindCore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

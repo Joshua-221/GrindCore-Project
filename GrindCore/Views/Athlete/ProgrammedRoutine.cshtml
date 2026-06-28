@@ -1,0 +1,76 @@
+@model IEnumerable<GrindCore.Models.ScheduledSession>
+
+@{
+    ViewData["Title"] = "Rutina Programada";
+}
+
+<div class="container mt-4" style="background-color: #121212; color: #fff; padding: 20px; border-radius: 8px;">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3" style="border-color: #2d2d2d !important;">
+        <div>
+            <span class="text-muted text-uppercase" style="font-size: 0.85rem; letter-spacing: 1px;">Cronograma General</span>
+            <h2 class="text-danger mb-0 font-weight-bold">@ViewBag.AthleteName</h2>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-light btn-sm">← Volver al Roster</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center p-5 my-4 rounded" style="background-color: #1c1c1c; border: 1px dashed #333;">
+            <p class="text-muted mb-3">Este atleta aún no tiene sesiones de entrenamiento programadas en el calendario.</p>
+            <a asp-action="Calendar" asp-route-athleteId="@Context.Request.Query["athleteId"]" class="btn btn-danger btn-sm">Ir al Calendario para Asignar</a>
+        </div>
+    }
+    else
+    {
+        @foreach (var session in Model)
+        {
+            <div class="card bg-dark text-white mb-4" style="border: 1px solid #2d2d2d; border-radius: 6px; overflow: hidden;">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #1a1a1a; border-bottom: 1px solid #2d2d2d;">
+                    <div>
+                        <span class="badge bg-danger text-uppercase px-2 py-1 mr-2" style="font-size: 0.75rem;">@session.Date.ToString("dd/MM/yyyy")</span>
+                        <strong style="font-size: 1.05rem;">@session.Title</strong>
+                    </div>
+                    <a asp-action="Calendar" asp-route-athleteId="@session.AthleteId" asp-route-date="@session.Date.ToString("yyyy-MM-dd")" class="btn btn-sm btn-outline-danger">
+                        Ajustar en Calendario
+                    </a>
+                </div>
+                <div class="card-body p-0">
+                    @if (session.Exercises != null && session.Exercises.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-dark table-hover mb-0" style="background-color: #1e1e1e;">
+                                <thead>
+                                    <tr class="text-muted" style="font-size: 0.85rem; background-color: #151515;">
+                                        <th class="pl-4">Movimiento</th>
+                                        <th>Sets</th>
+                                        <th>Reps</th>
+                                        <th>Kilos</th>
+                                        <th class="pr-4">RPE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var ex in session.Exercises)
+                                    {
+                                        <tr>
+                                            <td class="pl-4 font-weight-bold" style="color: #e0e0e0;">@ex.Name</td>
+                                            <td>@ex.Sets</td>
+                                            <td>@ex.Reps</td>
+                                            <td>@ex.Weight kg</td>
+                                            <td class="pr-4 text-warning">@ex.Rpe</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="p-3 text-muted" style="font-size: 0.9rem;">
+                            No se agregaron movimientos específicos para esta fecha.
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>

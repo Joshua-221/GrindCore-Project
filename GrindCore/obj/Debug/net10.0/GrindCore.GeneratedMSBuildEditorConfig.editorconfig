@@ -22,12 +22,40 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/Calendar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9DYWxlbmRhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Athlete/ProgrammedRoutine.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQXRobGV0ZS9Qcm9ncmFtbWVkUm91dGluZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Routine/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm91dGluZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/joshuacruz/RiderProjects/GrindCore/GrindCore/Views/Shared/Error.cshtml]

@@ -1,86 +1,71 @@
-@model WorkoutDashboardViewModel
-@using System.Text.Json
-
 @{
-    ViewData["Title"] = "Entrenamientos";
-    var initialState = JsonSerializer.Serialize(Model, new JsonSerializerOptions(JsonSerializerDefaults.Web));
+    ViewData["Title"] = "Home";
 }
 
-<section class="app-shell" data-workout-app data-initial-state='@initialState'>
-    <div class="app-heading">
-        <div>
-            <p class="eyebrow">Powerlifting log</p>
-            <h1>Planifica rutinas, ejercicios y series</h1>
+<div class="container-fluid px-md-5 mt-5">
+    <div class="iron-card text-center d-flex flex-column justify-content-center align-items-center" style="min-height: 70vh; background: radial-gradient(circle at 50% 50%, #161616, #080808) !important;">
+        
+        <!-- Elemento decorativo: Silueta de disco/barra con CSS puro -->
+        <div class="barbell-icon-wrapper mb-4">
+            <div class="iron-disc left-disc"></div>
+            <div class="iron-bar"></div>
+            <div class="iron-disc right-disc"></div>
         </div>
-        <div class="metric-strip" aria-label="Resumen del entrenamiento">
-            <div>
-                <span data-total-routines>0</span>
-                <small>rutinas</small>
-            </div>
-            <div>
-                <span data-total-sets>0</span>
-                <small>series</small>
-            </div>
-            <div>
-                <span data-total-volume>0 kg</span>
-                <small>volumen</small>
-            </div>
-        </div>
+
+        <!-- Título Masivo Estilo Competencia -->
+        <h1 class="display-1 mb-2" style="font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; text-shadow: 0 0 30px rgba(220, 53, 69, 0.3);">
+            GRIND <span class="text-danger" style="color: #dc3545;">CORE</span>
+        </h1>
+        
+        <p class="lead text-muted mb-5" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; max-width: 600px; letter-spacing: 0.5px;">
+            SISTEMA DE GESTIÓN DE FUERZA Y PROGRAMACIÓN RPE 10
+        </p>
+
+        <div class="border-top border-secondary w-50 my-4" style="opacity: 0.2;"></div>
+
+        <p class="text-light mb-5" style="max-width: 650px; font-size: 1.1rem; color: #aaa !important;">
+            Control absoluto de levantadores, gestión estricta de bloques de carga y registro preciso de cada kilogramo en la barra. No dejes espacio al fallo.
+        </p>
+
+        <!-- Botón de Acción con Transición Pesada -->
+        <a asp-controller="Athlete" asp-action="Index" class="btn btn-danger btn-lg px-5 py-3 fw-bold shadow-lg" style="font-size: 1.2rem; letter-spacing: 1px; border-radius: 6px;">
+            ENTRAR AL PANEL DE ATLETAS &rarr;
+        </a>
     </div>
+</div>
 
-    <div class="planner-grid">
-        <aside class="control-panel" aria-label="Agregar ejercicio">
-            <form class="exercise-form" data-exercise-form>
-                <h2>Agregar ejercicio</h2>
-                <label>
-                    Rutina
-                    <select class="form-select" name="routineId" data-routine-select required></select>
-                </label>
-                <label>
-                    Ejercicio
-                    <input class="form-control" name="exerciseName" type="text" list="exercise-suggestions" placeholder="Ej. Sentadilla" required maxlength="60">
-                </label>
-                <div class="input-row">
-                    <label>
-                        Series
-                        <input class="form-control" name="sets" type="number" min="1" max="12" value="3" required>
-                    </label>
-                    <label>
-                        Reps
-                        <input class="form-control" name="reps" type="number" min="1" max="20" value="5" required>
-                    </label>
-                    <label>
-                        Kg
-                        <input class="form-control" name="loadKg" type="number" min="0" max="600" step="0.5" value="60" required>
-                    </label>
-                </div>
-                <button class="btn btn-outline-dark w-100" type="submit">Agregar ejercicio</button>
-            </form>
-
-            <datalist id="exercise-suggestions">
-                @foreach (var suggestion in Model.ExerciseSuggestions)
-                {
-                    <option value="@suggestion"></option>
-                }
-            </datalist>
-        </aside>
-
-        <div>
-            <div class="toolbar">
-                <div class="segmented-control" aria-label="Filtro de rutinas">
-                    <button class="is-active" type="button" data-filter="all">Todas</button>
-                    <button type="button" data-filter="Fuerza">Fuerza</button>
-                    <button type="button" data-filter="Volumen">Volumen</button>
-                    <button type="button" data-filter="Tecnica">Tecnica</button>
-                </div>
-                <button class="btn btn-sm btn-link text-danger" type="button" data-reset-app>Reiniciar</button>
-            </div>
-
-            <div class="routine-list" data-routine-list></div>
-            <div class="empty-state" data-empty-state hidden>
-                <h2>No hay rutinas todavía</h2>
-                <p>Crea una rutina y agrega los movimientos principales para empezar el bloque.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Estilos específicos para el arte de la barra olímpica de fondo -->
+<style>
+    .barbell-icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+        transform: scale(1.2);
+        animation: pulseGlow 3s infinite ease-in-out;
+    }
+    .iron-bar {
+        width: 120px;
+        height: 6px;
+        background: linear-gradient(90deg, #333, #888, #333);
+    }
+    .iron-disc {
+        width: 16px;
+        height: 45px;
+        background: #222;
+        border: 2px solid #333;
+        border-radius: 4px;
+        position: relative;
+    }
+    .iron-disc::after {
+        content: '';
+        position: absolute;
+        top: 5px; left: 2px; right: 2px; bottom: 5px;
+        border: 1px solid #dc3545;
+        border-radius: 2px;
+    }
+    @@keyframes pulseGlow {
+        0%, 100% { filter: drop-shadow(0 0 5px rgba(220, 53, 69, 0)); }
+        50% { filter: drop-shadow(0 0 15px rgba(220, 53, 69, 0.4)); }
+    }
+</style>

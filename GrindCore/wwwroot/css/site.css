@@ -1,31 +1,145 @@
-html {
-  font-size: 14px;
+/* --- VARIABLES DE IDENTIDAD --- */
+:root {
+  --bg-app: #0c0d0e;
+  --bg-surface: #141619;
+  --brand-red: #de1f26;
+  --text-white: #ffffff;
+  --text-gray: #9aa0a6;
+  --border-dark: #22252a;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+/* --- ESTILOS GLOBALES --- */
+html, body {
+  background-color: var(--bg-app) !important;
+  color: var(--text-white) !important;
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* --- NAVBAR --- */
+.gc-navbar {
+  background-color: var(--bg-surface) !important;
+  border-bottom: 1px solid var(--border-dark) !important;
+  padding: 0.75rem 1.5rem;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.gc-brand {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  color: var(--text-white) !important;
+  text-decoration: none;
 }
 
-body {
-  margin-bottom: 60px;
+/* Tarjetas: eliminamos el min-width rígido */
+.card-dark-custom {
+  background-color: var(--bg-surface) !important;
+  border: 1px solid var(--border-dark) !important;
+  border-radius: 8px !important;
+  padding: 24px;
+  height: 100%;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Contenedor de atletas: usamos el sistema de rejilla de Bootstrap */
+.athlete-wrapper {
+  margin-bottom: 30px; /* Aquí controlas el espacio entre filas */
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* Botones: Estilo único y centralizado */
+.btn-square-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1d21;
+  border: 1px solid var(--border-dark);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.75rem;
+  height: 85px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-square-menu:hover {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+.btn-square-menu i {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.btn-danger, .btn-gc-primary {
+  background-color: var(--brand-red) !important;
+  border: none !important;
+  color: var(--text-white) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+}
+
+/* --- FOOTER --- */
+footer {
+  background-color: var(--bg-surface) !important;
+  border-top: 1px solid var(--border-dark) !important;
+  color: var(--text-gray) !important;
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+
+/* Fuerza el fondo oscuro en los inputs y selects para que no se vean blancos */
+.form-control, .form-select {
+  background-color: #1a1d21 !important;
+  border: 1px solid #2d2d34 !important;
+  color: #ffffff !important;
+}
+
+/* Opcional: Cambiar el color del texto del placeholder */
+.form-control::placeholder {
+  color: #555 !important;
+}
+
+/* Asegura que el select se vea oscuro en todos los navegadores */
+.form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+
+/* Colores específicos por tipo de botón */
+.icon-profile { color: #3498db; }    /* Azul */
+.icon-routine { color: #f1c40f; }    /* Amarillo */
+.icon-prs { color: #e67e22; }        /* Naranja */
+.icon-active { color: #2ecc71; }     /* Verde */
+
+/* Ajuste para que el icono tome el color de la clase padre al hacer hover */
+.btn-square-menu:hover i {
+  color: #ffffff !important;
+}
+
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-dark); /* Mantén tu borde original */
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-8px); /* Elevación */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4) !important; /* Resaltado de sombra */
+  border-color: var(--brand-red) !important; /* Resaltado de borde */
+}
+
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #2d2d2d;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-10px); /* Efecto de levantamiento */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5) !important;
+  border-color: #de1f26 !important; /* Resaltado de borde */
 }
