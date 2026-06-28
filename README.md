@@ -1,34 +1,35 @@
-# ADR-01: Adopción de Arquitectura MVC Inicial
+# ADR-04: Implementación de Patrones GoF
 
 | Campo  | Valor |
 |--------|-------|
-| Autor  | Joshua Isaí Cruz Mosqueda |
-| Fecha  | 26/06/2026 |
+| Autor  | Joshua |
+| Fecha  | 28/06/2026 |
 | Estado | `Aceptado` |
 
 ---
 
 ## Contexto
 
-Desarrollo de la primera versión de Grind Core, una aplicación web dedicada a la gestión de entrenamientos de powerlifting. Se requiere una estructura inicial en .NET que permita construir una base funcional y estable, sirviendo como punto de partida estructurado antes de realizar la transición hacia patrones arquitectónicos más desacoplados.
+El sistema requiere calcular el 1RM basándose en diferentes fórmulas (Epley, etc.) y niveles de RPE. Originalmente, esta lógica estaba acoplada dentro del controlador mediante estructuras condicionales, lo que dificultaba el mantenimiento y la extensibilidad ante la adición de nuevas fórmulas o métodos de cálculo.
 
 ---
 
 ## Decisión
 
-Implementar el patrón arquitectónico Modelo-Vista-Controlador (MVC) estructurado mediante las herramientas nativas de ASP.NET Core.
+Se ha implementado el Patrón Strategy para encapsular las fórmulas de cálculo en clases independientes y el Patrón Factory Method para delegar la creación de la estrategia correcta basándose en el tipo de fórmula solicitada por el cliente.
 
 ### ¿Por qué?
 
-ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto resuelve el enrutamiento, la gestión de peticiones y el renderizado de la interfaz en un único proyecto unificado, eliminando la necesidad de configurar middlewares complejos, comunicación entre servicios o infraestructura adicional en las fases iniciales.
+- **Strategy:** Permite que el `CalculatorApiController` sea independiente de la lógica matemática. Cumple con el principio de Abierto/Cerrado (SOLID), permitiendo agregar nuevas fórmulas sin modificar el controlador.
+- **Factory Method:** Centraliza la lógica de instanciación. El controlador no necesita conocer las clases concretas (`EpleyRpeStrategy`), únicamente depende de una interfaz (`ICalculationStrategy`), simplificando la gestión de dependencias.
 
 ### Alternativas consideradas
 
 | Alternativa | Por qué la descarté |
 |-------------|---------------------|
-| Arquitectura Hexagonal | Requiere una definición exhaustiva de puertos y adaptadores que eleva la complejidad innecesariamente para el alcance actual del repositorio. |
-| Clean Architecture | La separación estricta en múltiples capas y proyectos independientes genera un exceso de abstracción difícil de justificar en este punto del desarrollo. |
-| Minimal APIs + Frontend Independiente | Implica gestionar la configuración de CORS y mantener entornos de ejecución separados, lo que ralentiza el flujo de trabajo inicial. |
+| Lógica estática/Hardcoded | Difícil de testear y propenso a errores al escalar. |
+| Herencia simple | Crea una jerarquía rígida difícil de extender en tiempo de ejecución. |
+| Service Locator | Oculta dependencias y hace el código más difícil de mantener (anti-patrón). |
 
 ---
 
@@ -36,20 +37,10 @@ ASP.NET Core MVC utiliza el principio de convención sobre configuración. Esto 
 
 **Lo que gano:**
 
-- Consecuencia técnica: Organización inmediata de los componentes web y acceso a datos guiado por las convenciones estándar del framework, simplificando el mantenimiento del código inicial.
-- Consecuencia sobre el proceso o el equipo: Flujo de trabajo directo y centralizado en un solo proyecto, optimizando el tiempo al evitar configuraciones de infraestructura ajenas al dominio.
+- **Técnica:** Desacoplamiento total entre la capa de presentación (API) y la lógica de dominio. Escalabilidad inmediata para nuevas fórmulas.
+- **Proceso:** Código más limpio, modular y fácil de someter a pruebas unitarias (unit testing).
 
 **Lo que sacrifico o asumo:**
 
-- Limitación técnica: Fuerte acoplamiento entre la lógica de presentación y las reglas de negocio, lo que impide realizar pruebas unitarias completamente aisladas del contexto HTTP.
-- Deuda o riesgo: La lógica del cálculo de los levantamientos quedará ligada a los controladores, asumiendo el compromiso de realizar una refactorización profunda para extraer el dominio en la siguiente rama.
-
-## Diagrama
-
-```mermaid
-graph TD
-    Client((Usuario / Navegador)) -->|HTTP Request| C[Controladores]
-    C -->|Instancia / Modifica| M[Modelos / Lógica de Entrenamiento]
-    C -->|Pasa datos| V[Vistas / Razor Pages]
-    V -->|HTML / UI| Client
-    M <--> DB[(PostgreSQL / SQLite)]
+- **Limitación técnica:** Se introduce una ligera complejidad inicial al tener que gestionar más archivos (interfaces y clases concretas).
+- **Deuda o riesgo:** Es necesario mantener la consistencia en el registro de los servicios en `Program.cs`. Si el proyecto crece demasiado, la `Factory` podría necesitar una refactorización hacia un registro por reflexión o mediante contenedores de inyección más avanzados.
