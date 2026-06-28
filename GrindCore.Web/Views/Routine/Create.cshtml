@@ -1,0 +1,89 @@
+@model GrindCore.Models.UserRoutine
+
+@{
+    var athleteId = (int)ViewData["AthleteId"];
+    var athleteName = (string)ViewData["AthleteName"];
+    ViewData["Title"] = "Asignar Rutina";
+}
+
+<div class="form-container">
+    <div class="header-zone" style="margin-bottom: 20px;">
+        <h1>Asignar Nuevo Bloque de Entrenamiento</h1>
+        <p>Atleta: <strong style="color: #ff4500;">@athleteName</strong></p>
+    </div>
+
+    <form method="post" action="@Url.Action("Create", "Routine")" class="athlete-form">
+        @Html.AntiForgeryToken()
+        
+        <input type="hidden" name="AthleteId" value="@athleteId" />
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Nombre del Bloque / Rutina *</label>
+            <input type="text" name="Name" class="form-control" required placeholder="Ej: Bloque de Fuerza SBD - Prep Competición">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 25px;">
+            <label>Descripción u Objetivos del Bloque</label>
+            <textarea name="Description" class="form-control" rows="2" placeholder="Ej: Rampa de intensificación de cara al torneo. Enfoque en el punto de estancamiento."></textarea>
+        </div>
+
+        <hr />
+
+        <h3 style="margin-top: 20px;">Programación de Ejercicios</h3>
+        <p class="text-muted" style="font-size: 0.9em;">Define los movimientos iniciales de la sesión. Puedes agregar tantas filas como necesites.</p>
+
+        <div class="table-responsive" style="margin-top: 15px;">
+            <table class="table" id="exercisesTable" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #222; color: #fff; text-align: left;">
+                        <th style="padding: 10px;">Ejercicio</th>
+                        <th style="width: 90px; padding: 10px;">Series</th>
+                        <th style="width: 90px; padding: 10px;">Reps</th>
+                        <th style="width: 110px; padding: 10px;">Peso (kg)</th>
+                        <th style="width: 100px; padding: 10px;">RPE</th>
+                        <th style="width: 60px; padding: 10px;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 8px;"><input type="text" name="ExerciseName" class="form-control" placeholder="Ej: Sumo Deadlift" required /></td>
+                        <td style="padding: 8px;"><input type="number" name="Sets" class="form-control" placeholder="3" required min="1" /></td>
+                        <td style="padding: 8px;"><input type="number" name="Reps" class="form-control" placeholder="5" required min="1" /></td>
+                        <td style="padding: 8px;"><input type="number" step="0.5" name="Weight" class="form-control" placeholder="140" required min="0" /></td>
+                        <td style="padding: 8px;"><input type="number" step="0.5" name="Rpe" class="form-control" placeholder="8" required min="0" max="10" /></td>
+                        <td style="padding: 8px; text-align: center;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button type="button" class="btn btn-secondary btn-sm" onclick="addExerciseRow()" style="margin-top: 10px; background-color: #444; color: white; border: none; padding: 5px 10px; cursor: pointer;">
+            + Agregar Ejercicio
+        </button>
+
+        <div class="form-actions" style="margin-top: 35px; display: flex; gap: 15px;">
+            <button type="submit" class="btn btn-lg btn-primary" style="background-color: #ff4500; color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer;">
+                Guardar y Asignar Bloque
+            </button>
+            <a href="@Url.Action("Details", "Athlete", new { id = athleteId })" class="btn btn-lg btn-secondary" style="background-color: #ccc; color: #333; padding: 10px 20px; text-decoration: none;">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+    function addExerciseRow() {
+        var table = document.getElementById("exercisesTable").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow();
+        
+        newRow.innerHTML = `
+            <td style="padding: 8px;"><input type="text" name="ExerciseName" class="form-control" placeholder="Ej: Bench Press" required /></td>
+            <td style="padding: 8px;"><input type="number" name="Sets" class="form-control" placeholder="4" required min="1" /></td>
+            <td style="padding: 8px;"><input type="number" name="Reps" class="form-control" placeholder="3" required min="1" /></td>
+            <td style="padding: 8px;"><input type="number" step="0.5" name="Weight" class="form-control" placeholder="100" required min="0" /></td>
+            <td style="padding: 8px;"><input type="number" step="0.5" name="Rpe" class="form-control" placeholder="8.5" required min="0" max="10" /></td>
+            <td style="padding: 8px; text-align: center;"><button type="button" style="background-color: #dc3545; color: white; border: none; padding: 5px 8px; cursor: pointer;" onclick="this.parentElement.parentElement.remove()">X</button></td>
+        `;
+    }
+</script>

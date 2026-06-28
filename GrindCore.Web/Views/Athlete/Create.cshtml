@@ -1,0 +1,59 @@
+@model GrindCore.Models.Athlete
+
+@{
+    ViewData["Title"] = "Registrar Atleta";
+}
+
+<div class="container mt-5" style="max-width: 700px; padding-bottom: 6rem;">
+    <!-- Aplicamos card-dark-custom para unificar el estilo -->
+    <div class="card-dark-custom p-4 p-md-5" style="border-top: 3px solid var(--brand-red);">
+        
+        <!-- Encabezado del Formulario -->
+        <div class="border-bottom pb-3 mb-4" style="border-color: var(--border-dark) !important;">
+            <h2 style="font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1px; color: white;">
+                REGISTRAR LEVANTADOR
+            </h2>
+            <p style="color: var(--text-gray); margin: 0; font-size: 0.9rem;">
+                Establece el perfil base y las marcas de partida para la programación de cargas.
+            </p>
+        </div>
+
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- Nombre Completo -->
+            <div class="mb-4">
+                <label asp-for="Name" class="form-label fw-bold" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-gray);">Nombre Completo</label>
+                <input asp-for="Name" class="form-control" required placeholder="Ej. Carlos Rodríguez" />
+                <span asp-validation-for="Name" class="text-danger" style="font-size: 0.85rem;"></span>
+            </div>
+
+            <!-- Categoría y Datos Técnicos -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <label asp-for="Category" class="form-label fw-bold" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-gray);">Categoría de Peso</label>
+                    <input asp-for="Category" class="form-control" required placeholder="Ej. -83kg" />
+                    <span asp-validation-for="Category" class="text-danger" style="font-size: 0.85rem;"></span>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label fw-bold" style="font-size: 0.85rem; text-transform: uppercase; color: var(--text-gray);">Estilo de Peso Muerto</label>
+                    <select name="Style" class="form-select">
+                        <option value="Sumo">Sumo</option>
+                        <option value="Conventional">Convencional</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top" style="border-color: var(--border-dark) !important;">
+                <a asp-action="Index" class="text-decoration-none" style="color: var(--text-gray); font-weight: 600; font-size: 0.85rem; text-transform: uppercase;">
+                    Volver al Panel
+                </a>
+                <button type="submit" class="btn btn-danger px-4">
+                    Guardar Atleta
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
